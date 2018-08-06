@@ -1,0 +1,7 @@
+Update available 5.6.0 → 6.3.0 
+   Run npm i npm to update
+
+Upgrade angular:
+npm uninstall -g @angular/cli
+npm cache clean
+npm install -g @angular/cli@latest

@@ -1,0 +1,36 @@
+group = 'com.ss8'
+version = '1.0.0-SNAPSHOT'
+
+allprojects {
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+}
+
+
+//------------------------------------------------------------------------------------------------------------------------
+//    Tasks - Application
+//------------------------------------------------------------------------------------------------------------------------
+
+task buildApp(type: GradleBuild) {
+    group 'application'
+    setTasks([':frontend:npmUpdate', ':frontend:clean', ':frontend:buildFrontend', ':backend:bootRun'])
+}
+
+task buildClean(type: GradleBuild) {
+    group 'application'
+    setTasks([':frontend:clean', ':backend:clean'])
+}
+
+
+//------------------------------------------------------------------------------------------------------------------------
+//    Tasks - Init project
+//------------------------------------------------------------------------------------------------------------------------
+
+task wrapper(type: Wrapper) {
+    group 'init'
+    gradleVersion '4.2'
+    distributionType Wrapper.DistributionType.ALL
+}
